@@ -19,7 +19,7 @@ jobs:
         with:
           registry: https://git.warp.ashwatdd.com
           username: ash
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PACKAGE_TOKEN }}
 
       - name: Docker meta
         id: meta

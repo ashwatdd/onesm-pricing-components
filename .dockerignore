@@ -1,0 +1,25 @@
+# Build artifacts
+dist
+.astro
+
+# Node dependencies
+node_modules
+
+# IDE/Editor specific
+.idea
+.vscode
+
+# Git specific
+.git
+.gitignore
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Docker specific
+Dockerfile*
+.dockerignore
+
+# Logs
+*.log

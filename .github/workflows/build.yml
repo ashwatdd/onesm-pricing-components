@@ -14,6 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Podman and Buildah
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y podman buildah
+
       - name: Buildah Build
         id: build-image
         uses: redhat-actions/buildah-build@v2
@@ -29,8 +34,8 @@ jobs:
         uses: redhat-actions/podman-login@v1
         with:
           registry: ${{ env.GITHUB_SERVER_URL }}
-          username: ${{ secrets.GITEA_USERNAME }}
-          password: ${{ secrets.GITEA_TOKEN }}
+          username: ${{ secrets.GITHUB_REPOSITORY_OWNER }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to Gitea Registry
         id: push-to-registry

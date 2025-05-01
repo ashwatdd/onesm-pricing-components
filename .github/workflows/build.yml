@@ -26,7 +26,7 @@ jobs:
           image: ${{ env.GITHUB_REPOSITORY }}
           tags: |
             ${{ env.GITHUB_REF_NAME }}
-            ${{ env.GITEA_REF == 'refs/heads/main' && 'latest' || '' }}
+            ${{ env.GITHUB_REF == 'refs/heads/main' && 'latest' || '' }}
           containerfiles: |
             ./Dockerfile
 

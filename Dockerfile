@@ -1,6 +1,6 @@
 # Stage 1: Build the application using Bun
 # Use an official Bun image which includes Node.js and Bun
-FROM oven/bun:1 AS builder
+FROM docker.io/oven/bun:1 AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -22,7 +22,7 @@ RUN bun run build
 
 # Stage 2: Serve the static assets using Nginx
 # Use a lightweight Nginx image
-FROM nginx:stable-alpine AS runner
+FROM docker.io/nginx:stable-alpine AS runner
 
 # Set the working directory for Nginx
 WORKDIR /usr/share/nginx/html

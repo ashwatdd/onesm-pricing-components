@@ -1,34 +1,17 @@
 ---
-const siteName = 'SEO Guide';
-const siteHandle = '@seoguide';
-
-const pageTitle = 'Comprehensive SEO Guide: 8-Step Strategy for Better Rankings';
-const pageDescription = 'Learn technical SEO, keyword research, content creation, link building, and more with our detailed 8-step SEO guide. Improve your website\'s search engine rankings.';
+import BaseHead from '../components/BaseHead.astro';
+import Navbar from '../components/Navbar.astro';
 ---
 
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <meta name="viewport" content="width=device-width"/>
-    <meta name="generator" content={Astro.generator}/>
-
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription}/>
-
-    <meta name="og:title" content={pageTitle}/>
-    <meta name="og:description" content={pageDescription}/>
-
-    <meta name="og:site_name" content={siteName}/>
-    <meta name="og:type" content="article"/>
-    <meta name="og:url" content={Astro.url}/>
-    <meta name="og:image" content="/seo-guide-ogimage.jpg"/>
-
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:site" content={siteHandle}/>
-
+    <BaseHead
+            title="Comprehensive SEO Guide: 8-Step Strategy for Better Rankings"
+            description="Learn technical SEO, keyword research, content creation, link building, and more with our detailed 8-step SEO guide. Improve your website's search engine rankings."
+    />
 </head>
 <body>
+<Navbar/>
 <h1>Astro</h1>
 <main>
     <h1>Comprehensive SEO Guide</h1>

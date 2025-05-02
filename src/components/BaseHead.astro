@@ -1,0 +1,36 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  siteName?: string;
+  siteHandle?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description, 
+  siteName = 'SEO Guide', 
+  siteHandle = '@seoguide',
+  image = '/seo-guide-ogimage.jpg'
+} = Astro.props;
+---
+
+<meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<meta name="viewport" content="width=device-width"/>
+<meta name="generator" content={Astro.generator}/>
+
+<title>{title}</title>
+<meta name="description" content={description}/>
+
+<meta name="og:title" content={title}/>
+<meta name="og:description" content={description}/>
+
+<meta name="og:site_name" content={siteName}/>
+<meta name="og:type" content="article"/>
+<meta name="og:url" content={Astro.url}/>
+<meta name="og:image" content={image}/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content={siteHandle}/>

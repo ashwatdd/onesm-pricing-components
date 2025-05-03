@@ -1,20 +1,21 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Navbar from '../components/Navbar.astro';
+
+const pageTitle = 'Comprehensive SEO Guide: 8-Step Strategy for Better Rankings';
 ---
 
 <html lang="en">
 <head>
     <BaseHead
-            title="Comprehensive SEO Guide: 8-Step Strategy for Better Rankings"
+            title={pageTitle}
             description="Learn technical SEO, keyword research, content creation, link building, and more with our detailed 8-step SEO guide. Improve your website's search engine rankings."
     />
 </head>
 <body>
 <Navbar/>
-<h1>Astro</h1>
 <main>
-    <h1>Comprehensive SEO Guide</h1>
+    <h1>{pageTitle}</h1>
 
     <h2>Step 1: Technical Optimization & On-Page SEO</h2>
     <h3>Quick Fixes (Minimal Tech Know-How)</h3>

@@ -1,0 +1,28 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+
+export interface Props {
+  metaTitle: string;
+  metaDescription: string;
+}
+
+const { metaTitle, metaDescription } = Astro.props
+---
+<html lang="en">
+<head>
+  <BaseHead
+    title={metaTitle}
+    description={metaDescription}
+    siteName="SEO Guide"
+    siteHandle="@seoguide"
+    image="/seo-guide-ogimage.jpg"
+  />
+</head>
+<body>
+<Navbar />
+<slot />
+<Footer />
+</body>
+</html>

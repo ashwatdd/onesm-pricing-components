@@ -1,7 +1,7 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Navbar from '../components/Navbar.astro'
-import Footer from '../components/Footer.astro'
+import BaseHead from '../components/base/BaseHead.astro'
+import Header from '../components/base/Header.astro'
+import Footer from '../components/base/Footer.astro'
 
 export interface Props {
   metaTitle: string;
@@ -21,7 +21,7 @@ const { metaTitle, metaDescription } = Astro.props
   />
 </head>
 <body>
-<Navbar />
+<Header />
 <slot />
 <Footer />
 </body>

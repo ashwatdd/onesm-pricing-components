@@ -1,0 +1,59 @@
+---
+import DefaultLayout from './DefaultLayout.astro'
+import { DateTime } from 'luxon'
+
+export interface Props {
+  frontmatter: {
+    title: string
+    description: string
+    author: string,
+    pubDate: string,
+    image?: {
+      url: string;
+      alt?: string;
+    }
+    tags?: string[]
+  }
+}
+
+const { frontmatter } = Astro.props
+const pubDate = DateTime.fromISO(frontmatter.pubDate)
+---
+<DefaultLayout
+  metaTitle={frontmatter.title}
+  metaDescription={frontmatter.description}
+>
+  <main>
+    <section>
+      <hgroup>
+        <h1>{frontmatter.title}</h1>
+        <p>{frontmatter.description}</p>
+      </hgroup>
+      <dl>
+        <dt>Written by:</dt>
+        <dd>{frontmatter.author}</dd>
+        {frontmatter.tags && frontmatter.tags.length > 0 && (
+          <dt>Tags:</dt>
+          <dd>{(frontmatter.tags).join(' || ')}</dd>
+        )}
+        <dt>Published on:</dt>
+        <dd>{pubDate.toLocaleString(DateTime.DATETIME_FULL)}</dd>
+      </dl>
+      {frontmatter.image && (
+        <img width="200" height="200"
+             src={frontmatter.image.url}
+             alt={frontmatter.image.alt}>
+      )}
+    </section>
+    <article>
+      <slot />
+    </article>
+  </main>
+
+</DefaultLayout>
+
+<style>
+  section {
+    border-bottom: 1px solid #ccc;
+  }
+</style>

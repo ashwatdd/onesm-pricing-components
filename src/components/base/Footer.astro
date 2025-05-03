@@ -1,0 +1,19 @@
+---
+import SocialIcon from '../ui/SocialIcon.astro'
+---
+
+<footer>
+  <p>Learn more at {Astro.site}</p>
+  <ul>
+    <SocialIcon platform="twitter" usernameSlug="astrodotbuild" />
+    <SocialIcon platform="github" usernameSlug="withastro" />
+    <SocialIcon platform="youtube" usernameSlug="astrodotbuild" />
+  </ul>
+</footer>
+
+<style>
+  footer {
+    padding: 1rem 0;
+    border-top: 1px solid #ccc; /* Add a visual separator */
+  }
+</style>

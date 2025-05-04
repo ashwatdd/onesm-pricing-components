@@ -7,7 +7,7 @@ export interface Props {
 const { platform, usernameSlug, className } = Astro.props
 ---
 <a href={`https://www.${platform}.com/${usernameSlug}`} class:list={className}>
-  <span data-lucide={platform}>
+  <span data-lucide={platform} />
 </a>
 
 <script>

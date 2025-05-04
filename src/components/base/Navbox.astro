@@ -5,7 +5,7 @@ export interface Props {
 
 const { className } = Astro.props
 const { pathname } = Astro.url
-const url = pathname === '/posts/post-1' ? '/' : '/posts/post-1'
+const url = pathname.startsWith('/posts/post-1') ? '/' : '/posts/post-1'
 ---
 <nav class:list={className}>
   <a href={url}>

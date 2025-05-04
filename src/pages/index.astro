@@ -3,119 +3,66 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro'
 import Header from '@/components/base/Header/Header.astro'
 import HeaderStart from '@/components/base/Header/HeaderStart.astro'
 import HeaderEnd from '@/components/base/Header/HeaderEnd.astro'
-import HeaderIcon from '../components/base/Header/HeaderIcon.astro'
 import HeaderTitle from '../components/base/Header/HeaderTitle.astro'
+import AppIcon from '@/components/ui/AppIcon.astro'
+import AppNavCard from '@/components/AppNavCard.astro'
+import PageHeadingGroup from '../components/base/PageHeading/PageHeadingGroup.astro'
+import PageHeadingTitle from '../components/base/PageHeading/PageHeadingTitle.astro'
+import PageHeadingSubtitle from '../components/base/PageHeading/PageHeadingSubtitle.astro'
 
-const pageTitle = 'Snappy Price Calculator'
+const pageTitle = 'App Launcher'
+
+const apps = [
+  {
+    title: 'Price Calculator',
+    icon: 'calculator',
+    color: 'bg-violet-400',
+    path: '/pricing',
+  },
+  {
+    title: 'Blog',
+    icon: 'book-open-text',
+    color: 'bg-emerald-500',
+    path: '/posts/post-1',
+  },
+  {
+    title: 'Resource Planner',
+    icon: 'table',
+    color: 'bg-orange-500',
+    path: '/',
+  },
+  {
+    title: 'Analytics Dashboard',
+    icon: 'app-window',
+    color: 'bg-red-500',
+    path: '/',
+  },
+]
 ---
 <DefaultLayout
   metaTitle={pageTitle}
-  metaDescription="Select your plan options and instantly see your customized pricing."
-  className="bg-linear-to-b from-neutral-50 to-fuchsia-50"
+  metaDescription="Select an app to get started"
+  className="bg-linear-to-b from-neutral-50 to-cyan-50/70"
 >
   <Header>
     <HeaderStart>
-      <HeaderIcon className="bg-violet-400" icon="calculator" />
-      <HeaderTitle>Snappy Price Calculator</HeaderTitle>
+      <AppIcon icon="pyramid" size="sm" color="bg-cyan-500" />
+      <HeaderTitle>App Launcher</HeaderTitle>
     </HeaderStart>
-    <HeaderEnd>Fast, accurate pricing estimates</HeaderEnd>
+    <HeaderEnd>What will you do today?</HeaderEnd>
   </Header>
-  <main>
-    <hgroup>
-      <h1>Calculate Your Perfect Plan</h1>
-      <p>Select your options below and instantly see your customized pricing</p>
-    </hgroup>
-    <form>
-      <section>
-        <fieldset>
-          <legend>Select Your Plan</legend>
-          <ul>
-            <li>
-              <input
-                type="radio" name="select-your-plan"
-                id="select-your-plan-standard" value="standard"
-              />
-              <label for="select-your-plan-standard">
-                <span>Standard</span>
-                <strong>$49</strong>
-              </label>
-            </li>
-            <li>
-              <input
-                type="radio" name="select-your-plan"
-                id="select-your-plan-premium" value="premium"
-              >
-              <label for="select-your-plan-premium">
-                <span>Premium</span>
-                <span>Popular</span>
-                <strong>$99</strong>
-              </label>
-            </li>
-            <li>
-              <input
-                type="radio" name="select-your-plan"
-                id="select-your-plan-enterprise" value="enterprise"
-              />
-              <label for="select-your-plan-enterprise">
-                <span>Enterprise</span>
-                <strong>$199</strong>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-        <fieldset>
-          <legend>Licenses</legend>
-          <input
-            type="range" name="licenses"
-            id="licenses" min="1" max="10"
-          >
-          <label for="licenses">1 license</label>
-        </fieldset>
-        <fieldset>
-          <legend>Add-Ons</legend>
-          <ul>
-            <li>
-              <input
-                type="checkbox" name="priority-support"
-                id="add-ons-priority-support"
-              />
-              <label for="add-ons-priority-support">
-                <span>Priority Support</span>
-                <strong>+$49</strong>
-              </label>
-            </li>
-            <li>
-              <input
-                type="checkbox" name="advanced-analytics"
-                id="add-ons-advanced-analytics"
-              >
-              <label for="add-ons-advanced-analytics">
-                <span>Advanced Analytics</span>
-                <strong>+$29</strong>
-              </label>
-            </li>
-            <li>
-              <input
-                type="checkbox" name="custom-branding"
-                id="add-ons-custom-branding"
-              />
-              <label for="add-ons-custom-branding">
-                <span>Custom Branding</span>
-                <strong>+$49</strong>
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-      </section>
-      <section>
-        <h1>Price Summary</h1>
-        <output>
-          <span>Total Price</span>
-          <strong>$49.00</strong>
-          <span>/month</span>
-        </output>
-        <button type="submit">Get Started</button>
-      </section>
-    </form>
+  <main class="container mx-auto px-4 py-8">
+    <PageHeadingGroup>
+      <PageHeadingTitle>Home</PageHeadingTitle>
+      <PageHeadingSubtitle>Select an application to get started</PageHeadingSubtitle>
+    </PageHeadingGroup>
+
+    <article class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      {apps.map(x =>
+        <a href={x.path}>
+          <AppNavCard title={x.title} icon={x.icon} color={x.color} />
+        </a>
+      )}
+    </article>
   </main>
 </DefaultLayout>

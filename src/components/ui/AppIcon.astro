@@ -1,0 +1,48 @@
+---
+export interface Props {
+  icon: string
+  size: 'sm' | 'md'
+  color: string
+}
+
+const { color, size, icon } = Astro.props
+---
+
+<span
+  class:list={[
+    {
+      'p-2': size === 'sm',
+      'p-3': size === 'md',
+    },
+    'p-2',
+    'rounded-xl',
+    color
+  ]}
+>
+  <span
+    data-lucide={icon}
+    class:list={[
+      {
+        'w-6 h-6': size === 'sm',
+        'w-8 h-8': size === 'md',
+      },
+      'text-white',
+    ]}
+  />
+</span>
+
+<script>
+  import {
+    createIcons, Calculator, BookOpenText, Pyramid, AppWindow, Table,
+  } from 'lucide'
+
+  createIcons({
+    icons: {
+      Pyramid,
+      Calculator,
+      BookOpenText,
+      Table,
+      AppWindow,
+    }
+  })
+</script>

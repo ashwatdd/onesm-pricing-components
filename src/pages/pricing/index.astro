@@ -1,0 +1,121 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import Header from '@/components/base/Header/Header.astro'
+import HeaderStart from '@/components/base/Header/HeaderStart.astro'
+import HeaderEnd from '@/components/base/Header/HeaderEnd.astro'
+import HeaderTitle from '@/components/base/Header/HeaderTitle.astro'
+import AppIcon from '../../components/ui/AppIcon.astro'
+
+const pageTitle = 'Snappy Price Calculator'
+---
+<DefaultLayout
+  metaTitle={pageTitle}
+  metaDescription="Select your plan options and instantly see your customized pricing."
+  className="bg-linear-to-b from-neutral-50 to-purple-50/7-"
+>
+  <Header>
+    <HeaderStart>
+      <AppIcon icon="calculator" size="sm" color="bg-violet-400" />
+      <HeaderTitle>Snappy Price Calculator</HeaderTitle>
+    </HeaderStart>
+    <HeaderEnd>Fast, accurate pricing estimates</HeaderEnd>
+  </Header>
+  <main>
+    <hgroup>
+      <h1>Calculate Your Perfect Plan</h1>
+      <p>Select your options below and instantly see your customized pricing</p>
+    </hgroup>
+    <form>
+      <section>
+        <fieldset>
+          <legend>Select Your Plan</legend>
+          <ul>
+            <li>
+              <input
+                type="radio" name="select-your-plan"
+                id="select-your-plan-standard" value="standard"
+              />
+              <label for="select-your-plan-standard">
+                <span>Standard</span>
+                <strong>$49</strong>
+              </label>
+            </li>
+            <li>
+              <input
+                type="radio" name="select-your-plan"
+                id="select-your-plan-premium" value="premium"
+              >
+              <label for="select-your-plan-premium">
+                <span>Premium</span>
+                <span>Popular</span>
+                <strong>$99</strong>
+              </label>
+            </li>
+            <li>
+              <input
+                type="radio" name="select-your-plan"
+                id="select-your-plan-enterprise" value="enterprise"
+              />
+              <label for="select-your-plan-enterprise">
+                <span>Enterprise</span>
+                <strong>$199</strong>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Licenses</legend>
+          <input
+            type="range" name="licenses"
+            id="licenses" min="1" max="10"
+          >
+          <label for="licenses">1 license</label>
+        </fieldset>
+        <fieldset>
+          <legend>Add-Ons</legend>
+          <ul>
+            <li>
+              <input
+                type="checkbox" name="priority-support"
+                id="add-ons-priority-support"
+              />
+              <label for="add-ons-priority-support">
+                <span>Priority Support</span>
+                <strong>+$49</strong>
+              </label>
+            </li>
+            <li>
+              <input
+                type="checkbox" name="advanced-analytics"
+                id="add-ons-advanced-analytics"
+              >
+              <label for="add-ons-advanced-analytics">
+                <span>Advanced Analytics</span>
+                <strong>+$29</strong>
+              </label>
+            </li>
+            <li>
+              <input
+                type="checkbox" name="custom-branding"
+                id="add-ons-custom-branding"
+              />
+              <label for="add-ons-custom-branding">
+                <span>Custom Branding</span>
+                <strong>+$49</strong>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+      </section>
+      <section>
+        <h1>Price Summary</h1>
+        <output>
+          <span>Total Price</span>
+          <strong>$49.00</strong>
+          <span>/month</span>
+        </output>
+        <button type="submit">Get Started</button>
+      </section>
+    </form>
+  </main>
+</DefaultLayout>

@@ -1,11 +1,11 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro'
 import { DateTime } from 'luxon'
-import Header from '../components/base/Header/Header.astro'
-import HeaderTitle from '../components/base/Header/HeaderTitle.astro'
-import HeaderIcon from '../components/base/Header/HeaderIcon.astro'
-import HeaderStart from '../components/base/Header/HeaderStart.astro'
-import HeaderEnd from '../components/base/Header/HeaderEnd.astro'
+import Header from '@/components/base/Header/Header.astro'
+import HeaderTitle from '@/components/base/Header/HeaderTitle.astro'
+import HeaderStart from '@/components/base/Header/HeaderStart.astro'
+import HeaderEnd from '@/components/base/Header/HeaderEnd.astro'
+import AppIcon from '@/components/ui/AppIcon.astro'
 
 export interface Props {
   frontmatter: {
@@ -27,11 +27,11 @@ const pubDate = DateTime.fromISO(frontmatter.pubDate)
 <DefaultLayout
   metaTitle={frontmatter.title}
   metaDescription={frontmatter.description}
-  className="bg-linear-to-b from-neutral-50 to-emerald-50"
+  className="bg-linear-to-b from-neutral-50 to-emerald-50/70"
 >
   <Header>
     <HeaderStart>
-      <HeaderIcon className="bg-emerald-500" icon="book-open-text" />
+      <AppIcon icon="book-open-text" size="sm" color="bg-emerald-500" />
       <HeaderTitle>Blog</HeaderTitle>
     </HeaderStart>
     <HeaderEnd>Straight from the heart...</HeaderEnd>

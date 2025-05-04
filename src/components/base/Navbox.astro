@@ -4,22 +4,15 @@ export interface Props {
 }
 
 const { className } = Astro.props
+const { pathname } = Astro.url
+const url = pathname.slice(1) === 'posts/post-1' ? '/' : 'posts/post-1'
 ---
 <nav class:list={className}>
-  <button data-lucide="layout-grid"></button>
+  <a href={url}>
+    <span data-lucide="layout-grid" />
+  </a>
 </nav>
 
-
-<style>
-  a {
-    text-decoration: none;
-    color: inherit; /* Or set a specific link color */
-  }
-
-  a:hover {
-    text-decoration: underline; /* Optional: Add hover effect */
-  }
-</style>
 
 <script>
   import { LayoutGrid, createIcons } from 'lucide'

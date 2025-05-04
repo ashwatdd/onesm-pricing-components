@@ -1,5 +1,12 @@
-<nav>
-  
+---
+export interface Props {
+  className: string
+}
+
+const { className } = Astro.props
+---
+<nav class:list={className}>
+  <button data-lucide="layout-grid"></button>
 </nav>
 
 
@@ -13,3 +20,13 @@
     text-decoration: underline; /* Optional: Add hover effect */
   }
 </style>
+
+<script>
+  import { LayoutGrid, createIcons } from 'lucide'
+
+  createIcons({
+    icons: {
+      LayoutGrid
+    }
+  })
+</script>

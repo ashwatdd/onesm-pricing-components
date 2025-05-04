@@ -1,16 +1,21 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro'
 import { DateTime } from 'luxon'
+import Header from '../components/base/Header/Header.astro'
+import HeaderTitle from '../components/base/Header/HeaderTitle.astro'
+import HeaderIcon from '../components/base/Header/HeaderIcon.astro'
+import HeaderStart from '../components/base/Header/HeaderStart.astro'
+import HeaderEnd from '../components/base/Header/HeaderEnd.astro'
 
 export interface Props {
   frontmatter: {
     title: string
     description: string
-    author: string,
-    pubDate: string,
+    author: string
+    pubDate: string
     image?: {
-      url: string;
-      alt?: string;
+      url: string
+      alt?: string
     }
     tags?: string[]
   }
@@ -22,9 +27,23 @@ const pubDate = DateTime.fromISO(frontmatter.pubDate)
 <DefaultLayout
   metaTitle={frontmatter.title}
   metaDescription={frontmatter.description}
+  className="bg-linear-to-b from-neutral-50 to-emerald-50"
 >
+  <Header>
+    <HeaderStart>
+      <HeaderIcon className="bg-emerald-500" icon="book-open-text" />
+      <HeaderTitle>Blog</HeaderTitle>
+    </HeaderStart>
+    <HeaderEnd>Straight from the heart...</HeaderEnd>
+  </Header>
   <main>
-    <section>
+    <section class="border-b border-neutral-300">
+      {frontmatter.image && (
+        <img width="200" height="200"
+             src={frontmatter.image.url}
+             alt={frontmatter.image.alt}
+             class="float-right">
+      )}
       <hgroup>
         <h1>{frontmatter.title}</h1>
         <p>{frontmatter.description}</p>
@@ -39,11 +58,6 @@ const pubDate = DateTime.fromISO(frontmatter.pubDate)
         <dt>Published on:</dt>
         <dd>{pubDate.toLocaleString(DateTime.DATETIME_FULL)}</dd>
       </dl>
-      {frontmatter.image && (
-        <img width="200" height="200"
-             src={frontmatter.image.url}
-             alt={frontmatter.image.alt}>
-      )}
     </section>
     <article class="m-auto prose lg:prose-lg">
       <slot />
@@ -51,9 +65,3 @@ const pubDate = DateTime.fromISO(frontmatter.pubDate)
   </main>
 
 </DefaultLayout>
-
-<style>
-  section {
-    border-bottom: 1px solid #ccc;
-  }
-</style>

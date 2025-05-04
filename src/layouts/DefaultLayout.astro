@@ -1,13 +1,12 @@
 ---
 import '@/styles/global.css'
 import BaseHead from '@/components/base/BaseHead.astro'
-import Header from '@/components/base/Header.astro'
 import Footer from '@/components/base/Footer.astro'
 
 export interface Props {
-  metaTitle: string;
-  metaDescription: string;
-  className: string;
+  metaTitle: string
+  metaDescription: string
+  className: string
 }
 
 const { metaTitle, metaDescription, className } = Astro.props
@@ -23,8 +22,6 @@ const { metaTitle, metaDescription, className } = Astro.props
   />
 </head>
 <body class:list={[className, 'min-h-screen bg-neutral-50']}>
-<Header />
-
 <slot />
 <Footer />
 </body>

@@ -1,0 +1,29 @@
+---
+export interface Props {
+  className: string
+  icon: string
+}
+
+const { className, icon } = Astro.props
+---
+
+<span
+  class:list={['p-2 rounded-xl', className]}
+>
+  <span data-lucide={icon} class="text-white"></span>
+</span>
+
+<script>
+  import {
+    createIcons,
+    Calculator,
+    BookOpenText,
+  } from 'lucide'
+
+  createIcons({
+    icons: {
+      Calculator,
+      BookOpenText
+    }
+  })
+</script>

@@ -1,19 +1,30 @@
 ---
 import SocialIcon from '@/components/ui/SocialIcon.astro'
+
+const socials = [{
+  platform: 'twitter',
+  usernameSlug: 'astrodotbuild',
+}, {
+  platform: 'github',
+  usernameSlug: 'withastro',
+}, {
+  platform: 'youtube',
+  usernameSlug: 'astrodotbuild',
+}]
 ---
 
-<footer>
-  <p>Learn more at {Astro.site}</p>
-  <ul>
-    <SocialIcon platform="twitter" usernameSlug="astrodotbuild" />
-    <SocialIcon platform="github" usernameSlug="withastro" />
-    <SocialIcon platform="youtube" usernameSlug="astrodotbuild" />
+<footer
+  class="py-6
+  flex flex-col items-center
+  text-neutral-500"
+>
+  <p>© 2025 Learnastro. All rights reserved.</p>
+  <ul class="flex gap-2">
+    {socials.map(x =>
+      <SocialIcon
+        platform={x.platform} usernameSlug={x.usernameSlug}
+        className="text-neutral-500 hover:text-neutral-800"
+      />
+    )}
   </ul>
 </footer>
-
-<style>
-  footer {
-    padding: 1rem 0;
-    border-top: 1px solid #ccc; /* Add a visual separator */
-  }
-</style>

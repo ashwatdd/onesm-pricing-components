@@ -7,9 +7,10 @@ import Footer from '@/components/base/Footer.astro'
 export interface Props {
   metaTitle: string;
   metaDescription: string;
+  className: string;
 }
 
-const { metaTitle, metaDescription } = Astro.props
+const { metaTitle, metaDescription, className } = Astro.props
 ---
 <html lang="en" class="dark">
 <head>
@@ -21,8 +22,9 @@ const { metaTitle, metaDescription } = Astro.props
     image="/favicon.jpg"
   />
 </head>
-<body>
+<body class:list={[className, 'min-h-screen bg-neutral-50']}>
 <Header />
+
 <slot />
 <Footer />
 </body>

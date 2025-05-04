@@ -1,4 +1,5 @@
 ---
+import { Code } from 'astro:components'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 
 const title = 'Who we are'
@@ -10,5 +11,9 @@ const title = 'Who we are'
   <main>
     <h1>{title}</h1>
     <p>This page is under construction. More information about our SEO Guide will be available soon.</p>
+    <article>
+      <h1>Test Zone</h1>
+      <Code code={`const foo = 'bar';`} lang="js" theme="dark-plus" />
+    </article>
   </main>
 </DefaultLayout>

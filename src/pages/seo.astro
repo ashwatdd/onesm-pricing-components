@@ -1,0 +1,147 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+const title = 'Comprehensive SEO Guide: 8-Step Strategy for Better Rankings'
+---
+<DefaultLayout
+  metaTitle={title}
+  metaDescription="Here you'll learn how to rank #1 on SEO"
+>
+  <main class="m-auto prose lg:prose-lg">
+    <h1>{title}</h1>
+
+    <h2>Step 1: Technical Optimization & On-Page SEO</h2>
+    <h3>Quick Fixes (Minimal Tech Know-How)</h3>
+    <ul>
+      <li>Use WP Rocket (WordPress) for speed optimization.</li>
+      <li>Use Smush (WordPress) for lossless image compression.</li>
+
+    </ul>
+    <h3>Technical SEO Basics</h3>
+    <ul>
+      <li>Ensure a `sitemap.xml` file exists (Use YoastSEO, Rankmath, or online generators).</li>
+      <li>Maintain proper website architecture (max 3 clicks from homepage to any page).</li>
+      <li>Serve images in next-gen formats (WebP, JPEG 2000, JPEG XR).</li>
+      <li>Remove or consolidate duplicate content (use 301 redirects).</li>
+      <li>Update `robots.txt` to hide non-public/unimportant pages (if applicable).</li>
+      <li>Optimize all pages using SEO best practices (YoastSEO/RankMath can guide this).</li>
+    </ul>
+    <h3>Advanced Technical SEO (Website Speed)</h3>
+    <ul>
+      <li>Aim for page load times under 2-3 seconds (Mobile & Desktop).</li>
+      <li>Use Pagespeed Insights to measure performance.</li>
+      <li>Address common speed issues:
+        <ul>
+          <li>Avoid resizing images with CSS/JS; resize them properly before uploading.</li>
+          <li>Enable lazy-loading for images below the fold.</li>
+          <li>Enable Gzip compression on your server.</li>
+          <li>Minify, aggregate, and inline CSS, JS, and HTML files where appropriate.</li>
+        </ul>
+      </li>
+      <li>Consider using a CDN combo like Cloudflare (Free) + BunnyCDN (Pay-as-you-go).</li>
+      <li>WP Rocket (WordPress plugin) can automate many of these fixes.</li>
+    </ul>
+
+    <h2>Step 2: Keyword Research</h2>
+    <h3>Keyword Research Sheet</h3>
+    <ul>
+      <li>Purpose: Prioritize content, track status, get overview.</li>
+      <li>Key Columns: Target Phrase, Priority, Status, Topic Cluster, Monthly Search Volume, CPC (optional).</li>
+    </ul>
+    <h3>Keyword Research Process</h3>
+    <ul>
+      <li>Identify your top 5 SEO competitors.</li>
+      <li>Analyze their ranking keywords using tools like SEMrush.</li>
+      <li>Extract relevant keywords for your sheet.</li>
+      <li>Use tools like UberSuggest to find related keywords based on your core terms.</li>
+    </ul>
+
+    <h2>Step 3: Create SEO Landing Pages</h2>
+    <ul>
+      <li>Build dedicated landing pages for direct-intent keywords.</li>
+      <li>Choose approach based on keyword similarity:
+        <ul>
+          <li>Use a general template for similar keywords.</li>
+          <li>Create unique pages for distinct use-cases.</li>
+        </ul>
+      </li>
+      <li>Optimize landing page content for target keywords (use Yoast, RankMath, or SurferSEO).</li>
+      <li>Add new landing pages to site navigation (header/footer).</li>
+      <li>Note: Landing page rankings often depend heavily on backlinks.</li>
+    </ul>
+
+    <h2>Step 4: Create SEO Blog Content</h2>
+    <ul>
+      <li>Target informational keywords relevant to your audience.</li>
+      <li>Focus on creating comprehensive outlines and high-quality writing.</li>
+    </ul>
+    <h3>Creating Content Outlines</h3>
+    <ul>
+      <li>Define target word count (aim for 1.5x-2x competitor length, or match if comprehensive).</li>
+      <li>Structure headers (H2, H3) based on top-ranking competitors.</li>
+      <li>Detail the information required for each section.</li>
+      <li>Incorporate insights from community research (Reddit, Quora).</li>
+    </ul>
+    <h3>Writing High-Quality Content</h3>
+    <ul>
+      <li>Write for your specific audience (tone, formality).</li>
+      <li>Eliminate fluff; ensure every sentence adds value.</li>
+      <li>Adjust complexity based on audience knowledge.</li>
+      <li>Establish clear writer guidelines.</li>
+      <li>Utilize tools like Grammarly and Hemingway Editor.</li>
+      <li>Hire skilled writers if needed.</li>
+    </ul>
+
+    <h2>Step 5: Link Building</h2>
+    <ul>
+      <li>Crucial for ranking, especially in competitive niches.</li>
+    </ul>
+    <h3>Common Link Building Strategies</h3>
+    <ul>
+      <li>Broken Link Building: Find dead links, suggest your content as replacement.</li>
+      <li>Guest Posting: Write articles for other blogs in exchange for a link.</li>
+      <li>Linkable Assets: Create valuable resources (tools, data, infographics) that attract links naturally.</li>
+      <li>Skyscraper Technique: Improve upon existing popular content and promote it to those who linked to the
+        original.
+      </li>
+    </ul>
+    <h3>Content Promotion Strategy (Earns Links Naturally)</h3>
+    <ul>
+      <li>Identify online channels where your target audience gathers.</li>
+      <li>Research the type of content they engage with most.</li>
+      <li>Create exceptionally valuable, in-depth content.</li>
+      <li>Promote the content extensively across identified channels.</li>
+    </ul>
+
+    <h2>Step 6: Interlink Your Pages</h2>
+    <ul>
+      <li>Goal: Improve user engagement, distribute link equity, help Google crawl site.</li>
+      <li>Link relevant pages and posts within your own website.</li>
+      <li>Make internal linking part of the writing process (e.g., aim for 10+ internal links per article).</li>
+      <li>Conduct periodic interlinking audits:
+        <ul>
+          <li>Use Google search: `site:yourwebsite.com "keyword"` to find link opportunities.</li>
+          <li>Link relevant mentions (including synonyms/acronyms) to the target page/post.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Step 7: Track & Improve Headline CTRs</h2>
+    <ul>
+      <li>Search result Click-Through Rate (CTR) influences rankings.</li>
+      <li>Higher-than-average CTR for a position can boost rankings.</li>
+      <li>Monitor CTRs using Google Search Console.</li>
+      <li>Process for Optimization:
+        <ul>
+          <li>Track Page Title, URL, CTR, and Average Position in a spreadsheet.</li>
+          <li>Analyze competitor headlines for inspiration.</li>
+          <li>Brainstorm and test new headlines (A/B testing if possible).</li>
+          <li>Implement changes and monitor impact over 3-4 weeks.</li>
+          <li>Iterate based on results.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Step 8: Measure and Revisit SEO</h2>
+  </main>
+</DefaultLayout>

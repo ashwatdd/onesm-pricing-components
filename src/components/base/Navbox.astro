@@ -1,4 +1,6 @@
 ---
+import LayoutGrid from 'lucide-astro/LayoutGrid'
+
 export interface Props {
   className: string
 }
@@ -7,17 +9,6 @@ const { className } = Astro.props
 ---
 <nav class:list={className}>
   <a href="/">
-    <span data-lucide="layout-grid" />
+    <LayoutGrid />
   </a>
 </nav>
-
-
-<script>
-  import { LayoutGrid, createIcons } from 'lucide'
-
-  createIcons({
-    icons: {
-      LayoutGrid
-    }
-  })
-</script>

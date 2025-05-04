@@ -1,12 +1,14 @@
 ---
 import Card from '@/components/ui/Card.astro'
 import AppIcon from '@/components//ui/AppIcon.astro'
+import { AppIcons } from './ui/appIcons'
 
 export interface Props {
   title: string
-  icon: string
+  icon: AppIcons
   color: string
 }
+
 
 const { title, icon, color } = Astro.props
 ---

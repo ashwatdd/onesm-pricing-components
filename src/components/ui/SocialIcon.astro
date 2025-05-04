@@ -1,4 +1,8 @@
 ---
+import Twitter from 'lucide-astro/Twitter'
+import Github from 'lucide-astro/Github'
+import Youtube from 'lucide-astro/Youtube'
+
 export interface Props {
   platform: string
   usernameSlug: string
@@ -7,17 +11,10 @@ export interface Props {
 const { platform, usernameSlug, className } = Astro.props
 ---
 <a href={`https://www.${platform}.com/${usernameSlug}`} class:list={className}>
-  <span data-lucide={platform} />
+  {platform === 'twitter' &&
+    <Twitter />}
+  {platform === 'github' &&
+    <Github />}
+  {platform === 'youtube' &&
+    <Youtube />}
 </a>
-
-<script>
-  import { Twitter, Github, Youtube, createIcons } from 'lucide'
-
-  createIcons({
-    icons: {
-      Twitter,
-      Github,
-      Youtube
-    }
-  })
-</script>

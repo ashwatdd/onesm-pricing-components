@@ -6,7 +6,7 @@
       "dependencies": {
         "@astrojs/vue": "^5.0.13",
         "astro": "^5.7.10",
-        "lucide": "^0.507.0",
+        "lucide-astro": "^0.507.0",
         "lucide-vue-next": "^0.507.0",
         "luxon": "^3.6.1",
         "vue": "^3.5.13",
@@ -1063,7 +1063,7 @@
 
     "lru-cache": ["lru-cache@10.4.3", "", {}, "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="],
 
-    "lucide": ["lucide@0.507.0", "", {}, "sha512-UVICRUye/KCV+UKptHbPg0gLH0shrR9qm19Bd7BNDoY52pb7DvJUyw9kNBjI2RxC9hvFqzOSqX5GNpzPnxkkbg=="],
+    "lucide-astro": ["lucide-astro@0.507.0", "", { "peerDependencies": { "astro": ">=2.7.1" } }, "sha512-RM6iHbq3W5X0JCM+0MEoH3tpZRrIU55/X6CGEXWwOSxEBntL+lHmvPxnNTnR2N7EL7Zs9gkVHJ9nQR/9w9Cm5Q=="],
 
     "lucide-vue-next": ["lucide-vue-next@0.507.0", "", { "peerDependencies": { "vue": ">=3.0.1" } }, "sha512-n0AZRmez4xq5vu5ZOfnrhC5wKBpu5tpwDHA6Ue2+sKyJv3USAPxqIerXLbdYbkHRW1tVZ3U9GE1MACsu6X/Z7Q=="],
 

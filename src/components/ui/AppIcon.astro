@@ -1,11 +1,40 @@
 ---
+import Loader from 'lucide-astro/Loader'
+import Pyramid from 'lucide-astro/Pyramid'
+import Calculator from 'lucide-astro/Calculator'
+import BookOpenText from 'lucide-astro/BookOpenText'
+import Table from 'lucide-astro/Table'
+import AppWindow from 'lucide-astro/AppWindow'
+
+import { type AppIcons } from '@/components/ui/appIcons'
+
 export interface Props {
-  icon: string
+  icon: AppIcons
   size: 'sm' | 'md'
   color: string
 }
 
 const { color, size, icon } = Astro.props
+
+let LucideIcon = Loader
+
+switch (icon) {
+  case 'pyramid':
+    LucideIcon = Pyramid
+    break
+  case 'calculator':
+    LucideIcon = Calculator
+    break
+  case 'book-open-text':
+    LucideIcon = BookOpenText
+    break
+  case 'table':
+    LucideIcon = Table
+    break
+  case 'app-window':
+    LucideIcon = AppWindow
+    break
+}
 ---
 
 <span
@@ -19,30 +48,8 @@ const { color, size, icon } = Astro.props
     color
   ]}
 >
-  <span
-    data-lucide={icon}
-    class:list={[
-      {
-        'w-6 h-6': size === 'sm',
-        'w-8 h-8': size === 'md',
-      },
-      'text-white',
-    ]}
+  <LucideIcon
+    size={(size === 'sm' && 24) || (size === 'md' && 32)}
+    class="text-white"
   />
 </span>
-
-<script>
-  import {
-    createIcons, Calculator, BookOpenText, Pyramid, AppWindow, Table,
-  } from 'lucide'
-
-  createIcons({
-    icons: {
-      Pyramid,
-      Calculator,
-      BookOpenText,
-      Table,
-      AppWindow,
-    }
-  })
-</script>

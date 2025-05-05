@@ -1,22 +1,20 @@
 <script setup lang="ts">
-import { api } from '@/lib/api/apiClient.ts'
+import type { PaymentRecord } from '@/lib/model/PaymentRecord.ts'
+import PaymentRecordRepository from '@/lib/repositories/PaymentRecordRepository.ts'
 import { ref } from 'vue'
 
-const data = ref([])
+const data = ref<PaymentRecord[]>([])
 
 async function loadData() {
-  api.get('payment-record').json().then((res) => {
-    console.log(res)
-    data.value = res.paymentRecords
-  })
+  data.value = await PaymentRecordRepository.getPaymentRecords()
 }
 </script>
 
 <template>
   <div class="p-8">
-    <p>
+    <code>
       {{ data }}
-    </p>
+    </code>
     <button
       class="p-2 rounded-md bg-cyan-600 text-white hover:bg-cyan-800 cursor-pointer"
       @click="loadData"

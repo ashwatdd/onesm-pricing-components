@@ -1,6 +1,8 @@
+import type { DateTime } from 'luxon'
+
 export interface PaymentRecord {
   eventId: string
-  dateCreated: Date
+  dateCreated: DateTime
   createdBy: string
   paymentLinkTitle: string
   paymentLinkDetails: string

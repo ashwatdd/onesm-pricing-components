@@ -1,23 +1,18 @@
 export interface PaymentRecordDto {
-  dateCreated: Date
+  eventId: string
+  dateCreated: string
+  createdBy: string
   paymentLinkTitle: string
   paymentLinkDetails: string
-  price: number
+  paymentLinkURL: string
+
   includesComprehensiveCourse: boolean
   includesBootcamp: boolean
   includesUWorld: boolean
   includesAAMC: boolean
   tutoringHours: number
   premiumTutor: boolean
-  installmentInterval: 'month' | 'week' | 'one-time'
+  installmentInterval: 0 | 1 | 2
   frequency: number
   numberOfInstallments: number
-  installmentAmount: number
-  redirectURL: string
-  studentName: string
-  studentEmail: string
-  imageURL: string
-  createdBy: string
-  paymentLinkURL: string
-  eventId: string
 }

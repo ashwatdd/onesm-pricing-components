@@ -1,4 +1,6 @@
 ---
+import { Font } from 'astro:assets'
+
 export interface Props {
   title: string
   description: string
@@ -34,3 +36,7 @@ const {
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content={siteHandle} />
+
+
+<Font cssVariable="--font-lexend" preload />
+<Font cssVariable="--font-secondary" preload />

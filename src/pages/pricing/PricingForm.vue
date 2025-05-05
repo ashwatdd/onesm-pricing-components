@@ -22,7 +22,7 @@ async function loadData() {
       Load Data
     </button>
   </div>
-  <form>
+  <form class="font-secondary">
     <section>
       <fieldset>
         <legend>Select Your Plan</legend>

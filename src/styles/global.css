@@ -3,3 +3,9 @@
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*noinspection CssUnresolvedCustomProperty*/
+@theme {
+  --font-sans: var(--font-lexend);
+  --font-secondary: var(--font-secondary);
+}

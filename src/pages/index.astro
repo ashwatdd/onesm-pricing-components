@@ -3,20 +3,26 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro'
 import Header from '@/components/base/Header/Header.astro'
 import HeaderStart from '@/components/base/Header/HeaderStart.astro'
 import HeaderEnd from '@/components/base/Header/HeaderEnd.astro'
-import HeaderTitle from '../components/base/Header/HeaderTitle.astro'
+import HeaderTitle from '@/components/base/Header/HeaderTitle.astro'
 import AppIcon from '@/components/ui/AppIcon.astro'
 import AppNavCard from '@/components/AppNavCard.astro'
-import PageHeadingGroup from '../components/base/PageHeading/PageHeadingGroup.astro'
-import PageHeadingTitle from '../components/base/PageHeading/PageHeadingTitle.astro'
-import PageHeadingSubtitle from '../components/base/PageHeading/PageHeadingSubtitle.astro'
+import PageHeadingGroup from '@/components/base/PageHeading/PageHeadingGroup.astro'
+import PageHeadingTitle from '@/components/base/PageHeading/PageHeadingTitle.astro'
+import PageHeadingSubtitle from '@/components/base/PageHeading/PageHeadingSubtitle.astro'
+import { type AppIcons } from '../components/ui/appIcons'
 
 const pageTitle = 'App Launcher'
 
-const apps = [
+const apps: {
+  title: string
+  icon: AppIcons,
+  color: `bg-${string}-500`
+  path: `/${string}`
+}[] = [
   {
     title: 'Price Calculator',
     icon: 'calculator',
-    color: 'bg-violet-400',
+    color: 'bg-violet-500',
     path: '/pricing',
   },
   {
@@ -47,7 +53,7 @@ const apps = [
   <Header>
     <HeaderStart>
       <AppIcon icon="pyramid" size="sm" color="bg-cyan-500" />
-      <HeaderTitle>App Launcher</HeaderTitle>
+      <HeaderTitle>{pageTitle}</HeaderTitle>
     </HeaderStart>
     <HeaderEnd>What will you do today?</HeaderEnd>
   </Header>

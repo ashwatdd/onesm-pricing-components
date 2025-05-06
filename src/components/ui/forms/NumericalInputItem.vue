@@ -34,6 +34,7 @@ function handleInput() {
     v-model="rawInputData"
     type="text"
     class="text-center outline-none"
+    :class="{ 'pointer-events-none': disabled }"
     :disabled="props.disabled"
     @blur="handleInput"
     @keydown.enter.prevent="handleInput"

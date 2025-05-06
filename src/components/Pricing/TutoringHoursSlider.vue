@@ -2,47 +2,36 @@
 import type { CourseType } from '@/lib/model/CourseType.ts'
 import type PriceData from '@/lib/model/PriceData.ts'
 import DiscountBadge from '@/components/Pricing/DiscountBadge.vue'
+import TutoringHoursPriceBar from '@/components/Pricing/TutoringHoursPriceBar.vue'
+import usePriceServiceForTutoring from '@/components/Pricing/usePriceServiceForTutoring.ts'
 import Card from '@/components/ui/card/Card.vue'
 import DropInFadeTransition from '@/components/ui/DropInFadeTransition.vue'
-import NumericalInputItem from '@/components/ui/forms/NumericalInputItem.vue'
 import SliderItem from '@/components/ui/forms/SliderItem.vue'
 import SwitchItem from '@/components/ui/forms/SwitchItem.vue'
-import PriceService from '@/lib/service/PriceService.ts'
-import { round } from '@/lib/utils.ts'
 import { DollarSign, Percent } from 'lucide-vue-next'
 import { computed } from 'vue'
 
 const props = defineProps<{
   tutoringHourPrices: PriceData['tutoringHourPrices']
   courseType: CourseType | undefined
-  installmentCount: number
 }>()
-const checked = defineModel<boolean>('checked')
-const disabled = computed(() => props.courseType === undefined || !checked.value)
-
+const courseType = computed(() => props.courseType ?? 'plain-hours')
 const min = 5
 const max = computed(() => props.tutoringHourPrices.reduce(
   (max, current) => current.hours > max ? current.hours : max,
   min,
 ))
-const hardMax = 200
 
-const model = defineModel<number>('hours')
-const safeModel = computed(() => model.value ?? min)
-const safeCourseType = computed(() => props.courseType ?? 'plain-hours')
+const checked = defineModel<boolean>('checked')
+const disabled = computed(() => props.courseType === undefined || !checked.value)
 
-const isComboDiscount = computed(() => PriceService.doesCourseProvideComboDiscount(safeCourseType.value))
-const is15PercentDiscount = computed(() => PriceService.doesCourseProvide15PercentDiscount(safeCourseType.value))
-
-const pricePerHour = computed(() => PriceService.calculateHourlyRate(
-  props.tutoringHourPrices,
-  safeModel.value,
-))
-const totalCost = computed(() => PriceService.calculateDiscountedTutoringPrice(
-  props.tutoringHourPrices,
-  safeModel.value,
-  safeCourseType.value,
-))
+const hours = defineModel<number>('hours', { default: min })
+const {
+  is15PercentDiscount,
+  isComboDiscount,
+  pricePerHour,
+  totalCost,
+} = usePriceServiceForTutoring(props.tutoringHourPrices, courseType, hours)
 </script>
 
 <template>
@@ -63,79 +52,25 @@ const totalCost = computed(() => PriceService.calculateDiscountedTutoringPrice(
       </DropInFadeTransition>
       <DropInFadeTransition class="flex items-center justify-end">
         <SwitchItem
-          v-if="safeCourseType !== 'plain-hours'"
+          v-if="courseType !== 'plain-hours'"
           v-model="checked"
           name="tutoring-hours"
         />
       </DropInFadeTransition>
     </header>
     <SliderItem
-      :model-value="[model ?? min]"
-      :max="max"
-      :min="min"
+      v-model="hours"
+      :max="max" :min="min" :step="1"
       name="tutoring-hours"
-      :step="1"
       :disabled="disabled"
-      @update:model-value="(e) => { model = e ? e[0] : min }"
     />
-    <div
-      class="hidden mt-4 p-4
-      sm:flex items-center justify-center gap-2
-      bg-neutral-200 rounded-md
-      font-sans text-neutral-700
-      select-none"
-    >
-      <Card
-        class="p-2 min-w-12 h-12 grow
-        border-2
-        text-xl font-bold"
-        :class="{
-          'bg-neutral-200 text-black/50': disabled,
-          'bg-white text-black': !disabled,
-        }"
-      >
-        <NumericalInputItem
-          v-model="model"
-          :max="hardMax" :min="min"
-          class="w-full h-full"
-          :disabled="disabled"
-        />
-      </Card>
-
-      <p>
-        {{ safeModel === 1 ? 'hour' : 'hours' }}
-      </p>
-      <p class="pl-2">
-        @
-      </p>
-
-      <Card
-        class="p-2 min-w-12 h-12 shrink-0
-        flex justify-center items-center
-        border-2
-        text-xl font-bold"
-        :class="{ 'text-black/50': disabled }"
-      >
-        ${{ round(pricePerHour, 2) }}
-      </Card>
-
-      <p class="px-2 text-xl">
-        =
-      </p>
-
-      <Card
-        class="p-2 min-w-28 h-12 shrink-0
-        flex justify-center items-center
-        border-2
-        text-xl  font-bold"
-        :class="{
-          'bg-neutral-200 text-violet-500/50': disabled,
-          'bg-violet-100 text-violet-500': !disabled,
-        }"
-      >
-        ${{ round(totalCost, 2) }}
-      </Card>
-    </div>
+    <TutoringHoursPriceBar
+      v-model="hours"
+      :max="200" :min="min"
+      :price-per-hour="pricePerHour"
+      :total-cost="totalCost"
+      :disabled="disabled"
+    />
   </Card>
 </template>
 

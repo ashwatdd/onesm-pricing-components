@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { CourseType } from '@/lib/model/CourseType.ts'
-import PlanAddOnFieldset from '@/components/Pricing/PlanAddOnFieldset.vue'
-import SelectYourPlanFieldset from '@/components/Pricing/SelectYourPlanFieldset.vue'
+import AddOnFieldset from '@/components/Pricing/AddOnFieldset.vue'
+import SelectYourCourseFieldset from '@/components/Pricing/SelectYourCourseFieldset.vue'
 import TutoringHoursSlider from '@/components/Pricing/TutoringHoursSlider.vue'
 import Card from '@/components/ui/card/Card.vue'
 import priceMocks from '@/lib/prices.mock.ts'
 import PriceService from '@/lib/service/PriceService.ts'
 import { computed, ref } from 'vue'
-
-const installmentCount = ref(1)
 
 const courseType = ref<CourseType | undefined>(undefined)
 const tutoringEnabled = ref(true)
@@ -57,19 +55,17 @@ const totalPrice = computed(() => {
       </h3>
     </Card>
     <section class="lg:col-span-2 space-y-8">
-      <SelectYourPlanFieldset
+      <SelectYourCourseFieldset
         v-model="courseType"
         :course-prices="priceMocks.coursePrices"
-        :installment-count="installmentCount"
       />
       <TutoringHoursSlider
         v-model:hours="tutoringHours"
         v-model:checked="tutoringEnabled"
         :tutoring-hour-prices="priceMocks.tutoringHourPrices"
         :course-type="courseType"
-        :installment-count="installmentCount"
       />
-      <PlanAddOnFieldset
+      <AddOnFieldset
         v-model:premium-tutor="premiumTutor"
         v-model:aamc-content="aamcContent"
         v-model:uworld-content="uworldContent"

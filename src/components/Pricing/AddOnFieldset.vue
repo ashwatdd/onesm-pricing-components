@@ -1,14 +1,11 @@
 <script setup lang="ts">
+import type PriceData from '@/lib/model/PriceData.ts'
 import AddOnField from '@/components/Pricing/AddOnField.vue'
 import Card from '@/components/ui/card/Card.vue'
 import { FileText, User } from 'lucide-vue-next'
 
 const props = defineProps<{
-  addonPrices: {
-    premiumTutorPrice: number
-    aamcContentPrice: number
-    uworldContentPrice: number
-  }
+  addonPrices: PriceData['addonPrices']
 }>()
 
 const premiumTutor = defineModel('premiumTutor')

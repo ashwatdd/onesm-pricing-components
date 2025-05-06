@@ -12,6 +12,7 @@ const props = defineProps<{
   icon: Component
   tip?: string
   price: number
+  discount?: boolean
 }>()
 
 const model = defineModel()
@@ -20,7 +21,7 @@ const model = defineModel()
 <template>
   <HoverableCard
     class="flex flex-col"
-    @click.prevent="model = !model"
+    @click="model = !model"
   >
     <li class="flex-grow p-6 flex items-center gap-4">
       <div class="bg-neutral-200 p-3 rounded-full">
@@ -30,6 +31,7 @@ const model = defineModel()
         <label
           :for="props.id"
           class="font-bold cursor-pointer"
+          @click.prevent
         >{{ props.title }}</label>
         <p class="text-sm text-neutral-500">
           {{ props.description }}

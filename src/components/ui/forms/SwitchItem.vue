@@ -12,6 +12,7 @@ const model = defineModel()
     transition-colors duration-75
     cursor-pointer"
     :class="{ 'bg-violet-400': model }"
+    @click.stop="model = !model"
   >
     <input
       :id="props.name" v-model="model"

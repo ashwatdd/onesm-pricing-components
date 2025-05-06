@@ -4,25 +4,28 @@ import { ref, watch } from 'vue'
 const props = defineProps<{
   min?: number
   max?: number
+  disabled?: boolean
 }>()
-const model = defineModel<number | undefined>()
-
+const model = defineModel()
 const rawInputData = ref('')
+
 watch(model, (newValue) => {
-  rawInputData.value = newValue?.toString() ?? '0'
+  rawInputData.value = newValue!.toString()
 }, { immediate: true })
 
 function handleInput() {
-  const newValue = Number.parseInt(rawInputData.value)
+  let newValue = Number.parseInt(rawInputData.value)
   if (Number.isNaN(newValue)) {
-    model.value = 0
+    newValue = props.min ?? 0
   }
   else if (props.min && newValue < props.min) {
-    model.value = props.min
+    newValue = props.min
   }
   else if (props.max && newValue > props.max) {
-    model.value = props.max
+    newValue = props.max
   }
+  rawInputData.value = newValue.toString()
+  model.value = newValue
 }
 </script>
 
@@ -31,6 +34,7 @@ function handleInput() {
     v-model="rawInputData"
     type="text"
     class="text-center outline-none"
+    :disabled="props.disabled"
     @blur="handleInput"
     @keydown.enter.prevent="handleInput"
   >

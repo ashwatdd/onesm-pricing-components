@@ -3,6 +3,14 @@ import AddOnField from '@/components/Pricing/AddOnField.vue'
 import Card from '@/components/ui/card/Card.vue'
 import { FileText, User } from 'lucide-vue-next'
 
+const props = defineProps<{
+  addonPrices: {
+    premiumTutorPrice: number
+    aamcContentPrice: number
+    uworldContentPrice: number
+  }
+}>()
+
 const premiumTutor = defineModel('premiumTutor')
 const aamcContent = defineModel('aamcContent')
 const uworldContent = defineModel('uworldContent')
@@ -21,7 +29,7 @@ const uworldContent = defineModel('uworldContent')
           title="Premium Tutor"
           :icon="User"
           description="One-on-one sessions with expert tutors"
-          :price="50"
+          :price="props.addonPrices.premiumTutorPrice"
         />
         <AddOnField
           id="aamc-content"
@@ -30,7 +38,8 @@ const uworldContent = defineModel('uworldContent')
           :icon="FileText"
           description="Official AAMC practice materials"
           tip="You do not need this if you already have purchased AAMC materials by yourself!"
-          :price="300"
+          :price="props.addonPrices.aamcContentPrice"
+          discount
         />
         <AddOnField
           id="uworld-content"
@@ -39,7 +48,8 @@ const uworldContent = defineModel('uworldContent')
           :icon="FileText"
           description="Additional UWorld practice questions"
           tip="You do not need this if you already have purchased UWorld materials by yourself!"
-          :price="300"
+          :price="props.addonPrices.uworldContentPrice"
+          discount
         />
       </ul>
     </fieldset>

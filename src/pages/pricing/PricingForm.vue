@@ -3,18 +3,32 @@ import type { CourseType } from '@/lib/model/CourseType.ts'
 import PlanAddOnFieldset from '@/components/Pricing/PlanAddOnFieldset.vue'
 import SelectYourPlanFieldset from '@/components/Pricing/SelectYourPlanFieldset.vue'
 import TutoringHoursSlider from '@/components/Pricing/TutoringHoursSlider.vue'
-import { priceMocks } from '@/lib/prices.mock.ts'
+import priceMocks from '@/lib/prices.mock.ts'
+import PriceService from '@/lib/service/PriceService.ts'
 import { computed, ref } from 'vue'
 
 const installmentCount = ref(1)
 
-const plan = ref<CourseType | undefined>(undefined)
+const courseType = ref<CourseType | undefined>(undefined)
+const tutoringEnabled = ref(true)
 const tutoringHours = ref(10)
-const premiumTutor = ref(null)
-const aamcContent = ref(null)
-const uworldContent = ref(null)
+const premiumTutor = ref(false)
+const aamcContent = ref(true)
+const uworldContent = ref(true)
 
-const isDiscounted = computed(() => plan.value === 'bootcamp' || plan.value === 'comprehensive-course')
+const totalPrice = computed(() => {
+  if (!courseType.value) {
+    return 0
+  }
+
+  return PriceService.priceCalculator(priceMocks, {
+    courseType: courseType.value,
+    tutoringHours: tutoringEnabled.value ? tutoringHours.value : 0,
+    premiumTutor: premiumTutor.value,
+    aamcContent: aamcContent.value,
+    uworldContent: uworldContent.value,
+  })
+})
 </script>
 
 <template>
@@ -23,9 +37,14 @@ const isDiscounted = computed(() => plan.value === 'bootcamp' || plan.value === 
     font-secondary"
     @submit.prevent
   >
+    <output>
+      <span>Total Price</span>
+      <strong>${{ totalPrice }}</strong>
+      <span>/month</span>
+    </output>
     <ul>
-      <li>Plan: {{ plan }}</li>
-      <li>Tutoring hours: {{ tutoringHours }}</li>
+      <li>Course: {{ courseType }}</li>
+      <li>Tutoring hours: {{ tutoringEnabled ? tutoringHours : 0 }}</li>
       <li>Premium Tutor: {{ premiumTutor }}</li>
       <li>AAMC: {{ aamcContent }}</li>
       <li>UWorld: {{ uworldContent }}</li>
@@ -33,32 +52,23 @@ const isDiscounted = computed(() => plan.value === 'bootcamp' || plan.value === 
 
     <section class="md:col-span-3 space-y-8">
       <SelectYourPlanFieldset
-        v-model="plan"
+        v-model="courseType"
         :course-prices="priceMocks.coursePrices"
         :installment-count="installmentCount"
       />
       <TutoringHoursSlider
-        v-model="tutoringHours"
-        :price-per-hour="150"
-        :discounted="isDiscounted"
+        v-model:hours="tutoringHours"
+        v-model:checked="tutoringEnabled"
+        :tutoring-hour-prices="priceMocks.tutoringHourPrices"
+        :course-type="courseType"
         :installment-count="installmentCount"
       />
       <PlanAddOnFieldset
         v-model:premium-tutor="premiumTutor"
         v-model:aamc-content="aamcContent"
         v-model:uworld-content="uworldContent"
+        :addon-prices="priceMocks.addonPrices"
       />
-    </section>
-    <section>
-      <h1>Price Summary</h1>
-      <output>
-        <span>Total Price</span>
-        <strong>$49.00</strong>
-        <span>/month</span>
-      </output>
-      <button type="submit">
-        Get Started
-      </button>
     </section>
   </form>
 </template>

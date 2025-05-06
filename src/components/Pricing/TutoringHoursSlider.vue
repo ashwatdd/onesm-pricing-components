@@ -51,22 +51,22 @@ const totalCost = computed(() => PriceService.calculateDiscountedTutoringPrice(
       <h4 class="text-lg">
         Tutoring Hours
       </h4>
-      <DropInFadeTransition class="grow sm:grow-0 flex items-center justify-end">
+      <DropInFadeTransition class="grow flex justify-end">
+        <DiscountBadge v-if="is15PercentDiscount">
+          <Percent class="h-4 w-4" />
+          15% <span class="hidden sm:inline">discount applied</span>
+        </DiscountBadge>
+        <DiscountBadge v-if="isComboDiscount">
+          <DollarSign class="h-4 w-4" />
+          Combo <span class="hidden sm:inline">discount applied</span>
+        </DiscountBadge>
+      </DropInFadeTransition>
+      <DropInFadeTransition class="flex items-center justify-end">
         <SwitchItem
           v-if="safeCourseType !== 'plain-hours'"
           v-model="checked"
           name="tutoring-hours"
         />
-      </DropInFadeTransition>
-      <DropInFadeTransition class="grow hidden sm:flex justify-end">
-        <DiscountBadge v-if="is15PercentDiscount">
-          <Percent class="h-4 w-4" />
-          15% discount automatically applied
-        </DiscountBadge>
-        <DiscountBadge v-if="isComboDiscount">
-          <DollarSign class="h-4 w-4" />
-          Combo discount automatically applied
-        </DiscountBadge>
       </DropInFadeTransition>
     </header>
     <SliderItem

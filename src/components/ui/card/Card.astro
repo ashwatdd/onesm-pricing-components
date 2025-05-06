@@ -5,6 +5,6 @@ export interface Props {
 
 const { className } = Astro.props
 ---
-<div class:list={['border border-neutral-300 rounded-lg shadow-sm', className]}>
+<div class:list={['border border-neutral-300 rounded-lg', className]}>
   <slot />
 </div>

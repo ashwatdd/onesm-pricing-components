@@ -10,24 +10,24 @@ import PageHeadingTitle from '@/components/base/PageHeading/PageHeadingTitle.ast
 import PageHeadingSubtitle from '@/components/base/PageHeading/PageHeadingSubtitle.astro'
 import PricingForm from '@/pages/pricing/PricingForm.vue'
 
-const pageTitle = 'Price Calculator'
+const pageTitle = 'Pricing Model'
 ---
 <DefaultLayout
   metaTitle={pageTitle}
   metaDescription="Select your plan options and instantly see your customized pricing."
-  className="bg-linear-to-b from-neutral-50 to-purple-50/7-"
+  className="bg-linear-to-b from-neutral-50 to-purple-50/70"
 >
   <Header>
     <HeaderStart>
-      <AppIcon icon="calculator" size="sm" color="bg-violet-400" />
+      <AppIcon icon="calculator" size="sm" color="bg-violet-500" />
       <HeaderTitle>{pageTitle}</HeaderTitle>
     </HeaderStart>
     <HeaderEnd>Fast, accurate pricing estimates</HeaderEnd>
   </Header>
   <main class="container mx-auto px-6 py-8">
     <PageHeadingGroup>
-      <PageHeadingTitle>Calculate Your Perfect Plan</PageHeadingTitle>
-      <PageHeadingSubtitle>Select your options below and instantly see your customized pricing</PageHeadingSubtitle>
+      <PageHeadingTitle>Pricing</PageHeadingTitle>
+      <PageHeadingSubtitle>Select your options below</PageHeadingSubtitle>
     </PageHeadingGroup>
 
     <PricingForm client:load />

@@ -1,0 +1,10 @@
+---
+export interface Props {
+  className: string
+}
+
+const { className } = Astro.props
+---
+<div class:list={['border border-neutral-300 rounded-lg shadow-sm', className]}>
+  <slot />
+</div>

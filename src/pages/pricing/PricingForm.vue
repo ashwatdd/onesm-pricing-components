@@ -1,108 +1,38 @@
 <script setup lang="ts">
-import type { PaymentRecord } from '@/lib/model/PaymentRecord.ts'
-import PaymentRecordRepository from '@/lib/repositories/PaymentRecordRepository.ts'
+import PlanAddOnFieldset from '@/components/Pricing/PlanAddOnFieldset.vue'
+import SelectYourPlanFieldset from '@/components/Pricing/SelectYourPlanFieldset.vue'
+import TutoringHoursSlider from '@/components/Pricing/TutoringHoursSlider.vue'
 import { ref } from 'vue'
 
-const data = ref<PaymentRecord[]>([])
-
-async function loadData() {
-  data.value = await PaymentRecordRepository.getPaymentRecords()
-}
+const plan = ref(null)
+const tutoringHours = ref(10)
+const premiumTutor = ref(null)
+const aamcContent = ref(null)
+const uworldContent = ref(null)
 </script>
 
 <template>
-  <div class="p-8">
-    <code>
-      {{ data }}
-    </code>
-    <button
-      class="p-2 rounded-md bg-cyan-600 text-white hover:bg-cyan-800 cursor-pointer"
-      @click="loadData"
-    >
-      Load Data
-    </button>
-  </div>
-  <form class="font-secondary">
-    <section>
-      <fieldset>
-        <legend>Select Your Plan</legend>
-        <ul>
-          <li>
-            <input
-              id="select-your-plan-standard" type="radio"
-              name="select-your-plan" value="standard"
-            >
-            <label for="select-your-plan-standard">
-              <span>Standard</span>
-              <strong>$49</strong>
-            </label>
-          </li>
-          <li>
-            <input
-              id="select-your-plan-premium" type="radio"
-              name="select-your-plan" value="premium"
-            >
-            <label for="select-your-plan-premium">
-              <span>Premium</span>
-              <span>Popular</span>
-              <strong>$99</strong>
-            </label>
-          </li>
-          <li>
-            <input
-              id="select-your-plan-enterprise" type="radio"
-              name="select-your-plan" value="enterprise"
-            >
-            <label for="select-your-plan-enterprise">
-              <span>Enterprise</span>
-              <strong>$199</strong>
-            </label>
-          </li>
-        </ul>
-      </fieldset>
-      <fieldset>
-        <legend>Licenses</legend>
-        <input
-          id="licenses" type="range"
-          name="licenses" min="1" max="10"
-        >
-        <label for="licenses">1 license</label>
-      </fieldset>
-      <fieldset>
-        <legend>Add-Ons</legend>
-        <ul>
-          <li>
-            <input
-              id="add-ons-priority-support" type="checkbox"
-              name="priority-support"
-            >
-            <label for="add-ons-priority-support">
-              <span>Priority Support</span>
-              <strong>+$49</strong>
-            </label>
-          </li>
-          <li>
-            <input
-              id="add-ons-advanced-analytics" type="checkbox"
-              name="advanced-analytics"
-            >
-            <label for="add-ons-advanced-analytics">
-              <span>Advanced Analytics</span>
-              <strong>+$29</strong>
-            </label>
-          </li>
-          <li>
-            <input
-              id="add-ons-custom-branding" type="checkbox"
-              name="custom-branding"
-            >
-            <label for="add-ons-custom-branding">
-              <span>Custom Branding</span>
-              <strong>+$49</strong>
-            </label>
-          </li>
-        </ul>
-      </fieldset>
+  <form
+    class="grid grid-cols-1 md:grid-cols-3 gap-8
+    font-secondary"
+    @submit.prevent
+  >
+    <ul>
+      <li>Plan: {{ plan }}</li>
+      <li>Tutoring hours: {{ tutoringHours }}</li>
+      <li>Premium Tutor: {{ premiumTutor }}</li>
+      <li>AAMC: {{ aamcContent }}</li>
+      <li>UWorld: {{ uworldContent }}</li>
+    </ul>
+
+    <section class="md:col-span-3 space-y-8">
+      <SelectYourPlanFieldset v-model="plan" />
+      <TutoringHoursSlider v-model="tutoringHours" />
+      <PlanAddOnFieldset
+        v-model:premium-tutor="premiumTutor"
+        v-model:aamc-content="aamcContent"
+        v-model:uworld-content="uworldContent"
+      />
     </section>
     <section>
       <h1>Price Summary</h1>

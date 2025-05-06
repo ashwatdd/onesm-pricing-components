@@ -51,14 +51,14 @@ const totalCost = computed(() => PriceService.calculateDiscountedTutoringPrice(
       <h4 class="text-lg">
         Tutoring Hours
       </h4>
-      <DropInFadeTransition class="flex items-center">
+      <DropInFadeTransition class="grow sm:grow-0 flex items-center justify-end">
         <SwitchItem
           v-if="safeCourseType !== 'plain-hours'"
           v-model="checked"
           name="tutoring-hours"
         />
       </DropInFadeTransition>
-      <DropInFadeTransition class="grow flex justify-end">
+      <DropInFadeTransition class="grow hidden sm:flex justify-end">
         <DiscountBadge v-if="is15PercentDiscount">
           <Percent class="h-4 w-4" />
           15% discount automatically applied
@@ -79,8 +79,8 @@ const totalCost = computed(() => PriceService.calculateDiscountedTutoringPrice(
       @update:model-value="(e) => { model = e ? e[0] : min }"
     />
     <div
-      class="mt-4 p-4
-      flex items-center justify-center gap-2
+      class="hidden mt-4 p-4
+      sm:flex items-center justify-center gap-2
       bg-neutral-200 rounded-md
       font-sans text-neutral-700
       select-none"

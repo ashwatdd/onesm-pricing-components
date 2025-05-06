@@ -25,7 +25,7 @@ const model = defineModel()
     @click="model = !model"
   >
     <li class="flex-grow p-6 flex items-center gap-4">
-      <div class="bg-neutral-200 p-3 rounded-full">
+      <div class="hidden sm:block bg-neutral-200 p-3 rounded-full">
         <Component :is="props.icon" class="h-6 w-6 text-neutral-500" />
       </div>
       <div class="flex-grow">
@@ -38,13 +38,15 @@ const model = defineModel()
           {{ props.description }}
         </p>
       </div>
-      <p v-if="!discount || (discount && model)" class="font-bold shrink-0">
-        +${{ props.price }}
-      </p>
-      <Badge v-if="discount && !model" class="font-sans text-green-700 bg-green-100">
-        Discounted -${{ props.price }}
-      </Badge>
-      <SwitchItem v-model="model" :name="props.id" />
+      <div class="min-w-16 flex flex-col items-end sm:flex-row sm:items-center gap-4">
+        <p v-if="!discount || (discount && model)" class="font-bold shrink-0">
+          ${{ props.price }}
+        </p>
+        <Badge v-if="discount && !model" class="font-sans text-green-700 bg-green-100">
+          <span class="hidden sm:inline">Discounted</span> -${{ props.price }}
+        </Badge>
+        <SwitchItem v-model="model" :name="props.id" />
+      </div>
     </li>
     <CardFooter
       v-if="props.tip"
@@ -58,7 +60,7 @@ const model = defineModel()
         <Lightbulb class="h-4 w-4" />
         <span class="mx-1">Tip</span>
       </div>
-      <p class="self-center">
+      <p class="px-2 py-1 self-center">
         {{ props.tip }}
       </p>
     </CardFooter>

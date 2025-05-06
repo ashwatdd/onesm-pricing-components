@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+import Badge from '@/components/ui/Badge.vue'
 import CardFooter from '@/components/ui/card/CardFooter.vue'
 import HoverableCard from '@/components/ui/card/HoverableCard.vue'
 import SwitchItem from '@/components/ui/forms/SwitchItem.vue'
@@ -37,9 +38,12 @@ const model = defineModel()
           {{ props.description }}
         </p>
       </div>
-      <p class="font-bold shrink-0">
+      <p v-if="!discount || (discount && model)" class="font-bold shrink-0">
         +${{ props.price }}
       </p>
+      <Badge v-if="discount && !model" class="font-sans text-green-700 bg-green-100">
+        Discounted -${{ props.price }}
+      </Badge>
       <SwitchItem v-model="model" :name="props.id" />
     </li>
     <CardFooter

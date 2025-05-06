@@ -1,14 +1,20 @@
 <script setup lang="ts">
+import type { CourseType } from '@/lib/model/CourseType.ts'
 import PlanAddOnFieldset from '@/components/Pricing/PlanAddOnFieldset.vue'
 import SelectYourPlanFieldset from '@/components/Pricing/SelectYourPlanFieldset.vue'
 import TutoringHoursSlider from '@/components/Pricing/TutoringHoursSlider.vue'
-import { ref } from 'vue'
+import { priceMocks } from '@/lib/prices.mock.ts'
+import { computed, ref } from 'vue'
 
-const plan = ref(null)
+const installmentCount = ref(1)
+
+const plan = ref<CourseType | undefined>(undefined)
 const tutoringHours = ref(10)
 const premiumTutor = ref(null)
 const aamcContent = ref(null)
 const uworldContent = ref(null)
+
+const isDiscounted = computed(() => plan.value === 'bootcamp' || plan.value === 'comprehensive-course')
 </script>
 
 <template>
@@ -26,8 +32,17 @@ const uworldContent = ref(null)
     </ul>
 
     <section class="md:col-span-3 space-y-8">
-      <SelectYourPlanFieldset v-model="plan" />
-      <TutoringHoursSlider v-model="tutoringHours" />
+      <SelectYourPlanFieldset
+        v-model="plan"
+        :course-prices="priceMocks.coursePrices"
+        :installment-count="installmentCount"
+      />
+      <TutoringHoursSlider
+        v-model="tutoringHours"
+        :price-per-hour="150"
+        :discounted="isDiscounted"
+        :installment-count="installmentCount"
+      />
       <PlanAddOnFieldset
         v-model:premium-tutor="premiumTutor"
         v-model:aamc-content="aamcContent"

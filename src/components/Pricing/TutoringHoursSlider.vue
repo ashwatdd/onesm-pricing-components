@@ -1,21 +1,34 @@
 <script setup lang="ts">
-import Card from '@/components/ui/Card/Card.vue'
+import Badge from '@/components/ui/Badge.vue'
+import Card from '@/components/ui/card/Card.vue'
 import NumericalInputItem from '@/components/ui/forms/NumericalInputItem.vue'
 import SliderItem from '@/components/ui/forms/SliderItem.vue'
+import { Percent } from 'lucide-vue-next'
 import { computed } from 'vue'
 
+const props = defineProps<{
+  pricePerHour: number
+  discounted: boolean
+  installmentCount: number
+}>()
+
 const model = defineModel<number>()
-const pricePerHour = 150
 const safeModel = computed(() => model.value ?? 0)
-const totalCost = computed(() => safeModel.value * pricePerHour)
+const totalCost = computed(() => safeModel.value * props.pricePerHour)
 </script>
 
 <template>
   <Card class="p-6">
-    <header class="flex justify-between">
-      <h4 class="text-lg font-sans mb-4">
+    <header class="flex items-center justify-between font-sans mb-6">
+      <h4 class="text-lg">
         Tutoring Hours
       </h4>
+      <Transition>
+        <Badge v-if="props.discounted" class="text-green-700 bg-green-100 transition-all">
+          <Percent class="h-4 w-4" />
+          15% discount automatically applied
+        </Badge>
+      </Transition>
     </header>
     <SliderItem
       :model-value="[model ?? 0]"
@@ -52,7 +65,7 @@ const totalCost = computed(() => safeModel.value * pricePerHour)
         bg-white border-2
         text-xl font-bold"
       >
-        ${{ pricePerHour.toFixed(2) }}
+        ${{ props.pricePerHour.toFixed(2) }}
       </Card>
 
       <p class="px-2 text-xl">
@@ -72,5 +85,9 @@ const totalCost = computed(() => safeModel.value * pricePerHour)
 </template>
 
 <style scoped>
-
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-2px);
+}
 </style>

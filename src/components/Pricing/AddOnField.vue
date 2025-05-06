@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
-import CardFooter from '@/components/ui/Card/CardFooter.vue'
-import HoverableCard from '@/components/ui/Card/HoverableCard.vue'
+import CardFooter from '@/components/ui/card/CardFooter.vue'
+import HoverableCard from '@/components/ui/card/HoverableCard.vue'
 import SwitchItem from '@/components/ui/forms/SwitchItem.vue'
 import { Lightbulb } from 'lucide-vue-next'
 
@@ -35,7 +35,7 @@ const model = defineModel()
           {{ props.description }}
         </p>
       </div>
-      <p class="font-bold">
+      <p class="font-bold shrink-0">
         +${{ props.price }}
       </p>
       <SwitchItem v-model="model" :name="props.id" />

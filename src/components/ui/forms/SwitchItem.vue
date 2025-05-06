@@ -11,7 +11,7 @@ const model = defineModel()
     inline-flex border-2 border-neutral-300 rounded-full
     transition-colors duration-75
     cursor-pointer"
-    :class="{ 'bg-violet-500': model }"
+    :class="{ 'bg-violet-400': model }"
   >
     <input
       :id="props.name" v-model="model"

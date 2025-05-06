@@ -1,31 +1,46 @@
 <script setup lang="ts">
-import Card from '@/components/ui/Card/Card.vue'
-import CardFooter from '@/components/ui/Card/CardFooter.vue'
-import HoverableCard from '@/components/ui/Card/HoverableCard.vue'
+import type { CourseType } from '@/lib/model/CourseType.ts'
+import type { Component } from 'vue'
+import Card from '@/components/ui/card/Card.vue'
+import CardFooter from '@/components/ui/card/CardFooter.vue'
+import HoverableCard from '@/components/ui/card/HoverableCard.vue'
 import RadioItem from '@/components/ui/forms/RadioItem.vue'
 import { Book, Briefcase, Clock } from 'lucide-vue-next'
+import { computed } from 'vue'
 
-const emit = defineEmits(['update:modelValue'])
-const model = defineModel()
+const props = defineProps<{
+  coursePrices: {
+    comprehensiveCoursePrice: number
+    bootcampPrice: number
+  }
+  installmentCount: number
+}>()
+const model = defineModel<CourseType | undefined>()
 
-const options = [{
+const options: {
+  value: CourseType
+  title: string
+  icon: Component
+  description: string
+  price: any
+}[] = [{
   value: 'comprehensive-course',
   title: 'Comprehensive Course',
   icon: Book,
   description: 'Perfect for beginners',
-  price: 4500,
+  price: computed(() => `$${props.coursePrices.comprehensiveCoursePrice}`),
 }, {
   value: 'bootcamp',
   title: 'Bootcamp',
   icon: Briefcase,
   description: 'Intensive Learning',
-  price: 2000,
+  price: computed(() => `$${props.coursePrices.bootcampPrice}`),
 }, {
   value: 'plain-hours',
   title: 'Plain 1-on-1 Hours',
   icon: Clock,
   description: 'Personalized learning',
-  price: 1000,
+  price: 'Pay-as-you-go',
 }]
 </script>
 
@@ -40,7 +55,7 @@ const options = [{
           v-for="option in options" :key="option.value"
           class="flex flex-col"
           :class="{ 'border-2 border-violet-500 bg-violet-50': model === option.value }"
-          @click="emit('update:modelValue', option.value)"
+          @click="model = option.value"
         >
           <li class="flex-grow p-6 flex flex-col items-center text-center">
             <RadioItem v-model="model" name="select-your-plan" :value="option.value" />
@@ -56,7 +71,7 @@ const options = [{
             </p>
           </li>
           <CardFooter class="p-2 text-lg">
-            ${{ option.price }}
+            {{ option.price }}
           </CardFooter>
         </HoverableCard>
       </ul>

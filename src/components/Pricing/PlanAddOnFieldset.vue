@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AddOnField from '@/components/Pricing/AddOnField.vue'
-import Card from '@/components/ui/Card/Card.vue'
+import Card from '@/components/ui/card/Card.vue'
 import { FileText, User } from 'lucide-vue-next'
 
 const premiumTutor = defineModel('premiumTutor')

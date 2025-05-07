@@ -5,7 +5,7 @@ import { defineCustomElement } from 'vue'
 const stylesheet = new CSSStyleSheet()
 stylesheet.replaceSync(tailwind)
 stylesheet.insertRule(`
-:root {
+:host {
   --font-lexend: 'Lexend', sans-serif;
   --font-secondary: 'DM Sans', sans-serif;
 }
@@ -37,8 +37,8 @@ const result = fetchCSSInitializerStyles()
 if (result) {
   const { topLevelRuleIdx, cssText } = result
 
-  stylesheet.insertRule(cssText)
   stylesheet.deleteRule(topLevelRuleIdx)
+  stylesheet.insertRule(cssText)
 }
 
 // Extend a custom element on top of the custom element returned by defineCustomElement
